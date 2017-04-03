@@ -48,7 +48,11 @@ FILE = PATH + '/tmp/tmp-filename.jpg'
 
 
 def create_tweet(stuff):
-    """Create string for tweet with stuff."""
+    """Create string for tweet with stuff.
+
+    TODO: replace New York with NY
+    TODO: add a hashtag
+    """
     post = {"title": stuff['title'],
             "loc" : stuff['location'],
             "url" : stuff['url']}
