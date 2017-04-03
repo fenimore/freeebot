@@ -31,7 +31,6 @@ import tweepy
 
 #from freestuffs import stuff_scraper
 from freestuffs.stuff_scraper import StuffScraper
-from shortenurl import make_tiny
 from secrets import *
 
 # ====== Individual bot configuration ==========================
@@ -52,7 +51,7 @@ def create_tweet(stuff):
     """Create string for tweet with stuff."""
     post = {"title": stuff['title'],
             "loc" : stuff['location'],
-            "url" : make_tiny(stuff['url'])}
+            "url" : stuff['url']}
     _text = post["loc"] + "\n" + post["title"] +" " + post["url"]
     _text = check_length(_text, post)
     return _text
@@ -88,16 +87,15 @@ def tweet(new_stuffs_set):
 
 
 def check_length(tweet, post):
-    """Check if tweet is proper length.
-
-    TODO: Twitter has recently changed how it counts characters.
-    """
-    if len(tweet) < 145: # tweet is good
+    """Check if tweet is proper length."""
+    size = len(tweet) - post["url"]
+    if size < 145: # tweet is good
         return tweet
     else:
         log("Tweet too long")
         tweet = post["loc"] + "\n" + post["title"] + " " + post["url"]
-        if len(tweet) > 144: # tweet is still not good
+        size = len(tweet) - post["url"]
+        if size > 144: # tweet is still not good
             tweet = post["title"] + " " + post["url"]
             return tweet
         return tweet
