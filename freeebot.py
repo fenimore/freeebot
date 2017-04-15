@@ -146,4 +146,4 @@ if __name__ == "__main__":
         log("\n    New Stuffs : " + str(len(list(ready_set)))+
             "\n Todays Stuffs : "+ str(len(list(stale_set)))+
             "\n\n Sleep Now (-_-)Zzz... \n")
-        sleep(20) # 3600 Seconds = Hour
+        sleep(3600) # 3600 Seconds = Hour
