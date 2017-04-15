@@ -106,7 +106,7 @@ def check_length(tweet, post):
 
 
 def log(message):
-    """Log message to logfile."""
+    """Log message to logfile. And print it out."""
     path = os.path.realpath(os.path.join(os.getcwd(), 'log', os.path.dirname(__file__)))
     with open(os.path.join(path, logfile_username), 'a+') as f:
         t = strftime("%d %b %Y %H:%M:%S", gmtime())
