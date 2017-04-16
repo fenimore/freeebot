@@ -142,8 +142,8 @@ if __name__ == "__main__":
         """Evaluate if there have been new posts"""
         ready_set = fresh_set - stale_set # Get the difference
         stale_set = fresh_set
-        if len(list(ready_set)) is not 15:
-            tweet(ready_set)
+        # if len(list(ready_set)) is not 15:
+        tweet(ready_set)
         log("\n    New Stuffs : " + str(len(list(ready_set)))+
             "\n Todays Stuffs : "+ str(len(list(stale_set)))+
             "\n\n Sleep Now (-_-)Zzz... \n")
