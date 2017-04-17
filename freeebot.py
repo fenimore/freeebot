@@ -56,7 +56,7 @@ def create_tweet(stuff):
     post = {"title": stuff['title'],
             "loc" : stuff['location'],
             "url" : stuff['url']}
-    _text = post["loc"] + "\n" + post["title"] +" " + post["url"]
+    _text = post["loc"].string(', New York') + "\n" + post["title"] +" " + post["url"] + ' #FreeStuffNY'
     _text = check_length(_text, post)
     return _text
 
@@ -85,6 +85,7 @@ def tweet(new_stuffs_set):
                     log("\n\n Posting without media\n "
                          + tweet + "\n ----\n")
             except tweepy.error.TweepError as e:
+                log('Failure ' + stuff['title'])
                 log(e.message)
     else:
         print("\n ----\n")
@@ -147,4 +148,4 @@ if __name__ == "__main__":
         log("\n    New Stuffs : " + str(len(list(ready_set)))+
             "\n Todays Stuffs : "+ str(len(list(stale_set)))+
             "\n\n Sleep Now (-_-)Zzz... \n")
-        sleep(3600) # 3600 Seconds = Hour
+        sleep(1000) # 3600 Seconds = Hour
