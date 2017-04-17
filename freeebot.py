@@ -92,7 +92,7 @@ def tweet(new_stuffs_set):
 
 def check_length(tweet, post):
     """Check if tweet is proper length."""
-    size = len(tweet) - post["url"]
+    size = len(tweet) - len(post["url"])
     if size < 145: # tweet is good
         return tweet
     else:
