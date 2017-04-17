@@ -75,7 +75,11 @@ def tweet(new_stuffs_set):
                 isImage = False
             else:
                 isImage = True
-                urllib.request.urlretrieve(stuff['image'], FILE)
+                try:
+                    urllib.request.urlretrieve(stuff['image'], FILE)
+                except:
+                    log('image: '+ stuff['image'] + 'can\'t be found')
+                    isImage = False
             try:
                 if isImage:
                     log("\n\n Posting with Media \n " + tweet + "\n ----\n")
