@@ -56,7 +56,7 @@ def create_tweet(stuff):
     post = {"title": stuff['title'],
             "loc" : stuff['location'],
             "url" : stuff['url']}
-    _text = post["loc"].string(', New York') + "\n" + post["title"] +" " + post["url"] + ' #FreeStuffNY'
+    _text = post["loc"].strip(', New York') + "\n" + post["title"] +" " + post["url"] + ' #FreeStuffNY'
     _text = check_length(_text, post)
     return _text
 
@@ -81,12 +81,12 @@ def tweet(new_stuffs_set):
                     log("\n\n Posting with Media \n " + tweet + "\n ----\n")
                     api.update_with_media(FILE, status=tweet)
                 else:
-                    api.update_status(tweet)
                     log("\n\n Posting without media\n "
                          + tweet + "\n ----\n")
-            except tweepy.error.TweepError as e:
+                    api.update_status(tweet)
+            except tweepy.TweepError as e:
                 log('Failure ' + stuff['title'])
-                log(e.message)
+                log(e.reason)
     else:
         print("\n ----\n")
 
@@ -143,8 +143,8 @@ if __name__ == "__main__":
         """Evaluate if there have been new posts"""
         ready_set = fresh_set - stale_set # Get the difference
         stale_set = fresh_set
-        # if len(list(ready_set)) is not 15:
-        tweet(ready_set)
+        if len(list(ready_set)) is not 15:
+            tweet(ready_set)
         log("\n    New Stuffs : " + str(len(list(ready_set)))+
             "\n Todays Stuffs : "+ str(len(list(stale_set)))+
             "\n\n Sleep Now (-_-)Zzz... \n")
