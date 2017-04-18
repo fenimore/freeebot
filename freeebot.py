@@ -34,8 +34,8 @@ from freestuffs.stuff_scraper import StuffScraper
 from secrets import *
 
 # ====== Individual bot configuration ==========================
-bot_username = 'freestuff-NY'
-logfile_username = bot_username + ".log"
+bot_username = 'freeebot'
+logfile = bot_username
 # ==============================================================
 
 PATH = os.getcwd()
@@ -113,8 +113,9 @@ def check_length(tweet, post):
 def log(message):
     """Log message to logfile. And print it out."""
      # TODO: fix
+    date = strftime("-%d-%b-%Y", gmtime())
     path = os.path.realpath(os.path.join(os.getcwd(), 'log'))
-    with open(os.path.join(path, logfile_username), 'a+') as f:
+    with open(os.path.join(path, logfile + date + '.log'),'a+') as f:
         t = strftime("%d %b %Y %H:%M:%S", gmtime())
         print("\n" + t + " " + message) # print it tooo...
         f.write("\n" + t + " " + message)
@@ -129,7 +130,7 @@ if __name__ == "__main__":
     items, doesn't post, in order to stop flooding twitter
     on start up.
     """
-    process_log = open(os.path.join('log', logfile_username),'a+')
+    #process_log = open(os.path.join('log', logfile_username),'a+')
     _location = 'newyork' # TODO: Change to brooklyn?
     stale_set = set() # the B set is what has already been
     log("\n\nInitiating\n\n")
